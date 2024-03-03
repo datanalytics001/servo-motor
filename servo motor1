@@ -1,0 +1,31 @@
+#include <Servo.h>
+
+//     objeto
+Servo mi_servo;
+byte pinPot = A0;  // 14
+int lectura;
+byte angulo;
+
+
+void setup()
+{
+  //     vincular
+  mi_servo.attach(2);
+  pinMode(pinPot, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  lectura = analogRead(pinPot);// 0 - 1023
+  angulo = map(lectura, 0, 1023, 180, 0);
+  
+  //          ángulo
+  mi_servo.write(angulo);    // 0 - 180
+  
+  Serial.println(angulo);
+}
+
+
+
+
